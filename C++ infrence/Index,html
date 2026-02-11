@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ C++ Transformer Inference Engine</title>
+    <style>
+        /* CSS Styles - Same as before */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; overflow-x: hidden; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; position: relative; z-index: 1; }
+        .header { text-align: center; margin-bottom: 50px; color: white; }
+        .header h1 { font-size: 3.5em; text-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .main-card { background: rgba(255, 255, 255, 0.95); border-radius: 25px; padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+        textarea { width: 100%; min-height: 120px; padding: 20px; font-size: 1.1em; border: 3px solid #667eea; border-radius: 15px; margin-bottom: 20px; }
+        .btn-generate { width: 100%; padding: 20px; font-size: 1.3em; font-weight: bold; color: white; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; border-radius: 15px; cursor: pointer; transition: transform 0.2s; }
+        .btn-generate:hover { transform: translateY(-3px); }
+        .result-box { background: #1e1e1e; color: #00ff00; padding: 25px; border-radius: 15px; font-family: 'Courier New', monospace; margin-top: 20px; white-space: pre-wrap; min-height: 50px; }
+        .error { color: red; margin-top: 10px; font-weight: bold; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ C++ Transformer Engine</h1>
+            <p>Framework-Free | CPU-Only | Pure Performance</p>
+        </div>
+
+        <div class="main-card">
+            <label for="prompt">🔍 Enter Your Query (English)</label>
+            <textarea id="prompt" placeholder="Example: Get all users from Pune"></textarea>
+            
+            <button class="btn-generate" onclick="generateSQL()">🚀 Generate SQL</button>
+            
+            <div id="error" class="error"></div>
+            <div class="result-box" id="result">Waiting for input...</div>
+        </div>
+    </div>
+
+    <script>
+        // FastAPI Connection URL
+        const API_URL = 'http://127.0.0.1:8000'; 
+
+        async function generateSQL() {
+            const promptText = document.getElementById('prompt').value.trim();
+            const resultBox = document.getElementById('result');
+            const errorBox = document.getElementById('error');
+
+            // Clear previous results/errors
+            errorBox.textContent = '';
+            resultBox.textContent = 'Processing...';
+
+            if (!promptText) {
+                errorBox.textContent = '⚠️ Please enter a query first!';
+                return;
+            }
+
+            try {
+                // FIXED: Sending key "text" to match Python's BaseModel
+                const response = await fetch(`${API_URL}/generate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text: promptText }) 
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                // FIXED: Display the result
+                resultBox.textContent = data.result || 'No output returned.';
+                
+            } catch (error) {
+                console.error(error);
+                resultBox.textContent = 'Error occurred.';
+                errorBox.textContent = `❌ Connection Failed: ${error.message}. Is server.py running?`;
+            }
+        }
+    </script>
+</body>
+</html>
