@@ -4,24 +4,7 @@
 ![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
 
-- SLM tranning is done in google Colab colab link
-```
 
-https://colab.research.google.com/drive/1fkrAFCv32xtX1ralzYKAw522NoN0kzGn?usp=sharing
-
-```
-Data Set is from Hugging Face 
-```
-
-https://huggingface.co/datasets/PurpleAILAB/chatML_SQL_injection_dataset
-
-```
-This SLM GitHub Repo
-```
-
-https://github.com/sumeet1212khatri/SQL-Injection-GPT
-
-```
 A framework-free, CPU-only transformer inference runtime written in C++, executing end-to-end autoregressive generation (weights → logits → tokens) without PyTorch, TensorFlow, or GPU dependencies.
 
 The goal of this project is systems-level understanding of transformer inference, not model benchmarking.
@@ -58,7 +41,24 @@ C++ Inference Engine
    - Autoregressive decoding   
 
 ``` 
+### SLM tranning is done in google Colab colab link
+```
 
+https://colab.research.google.com/drive/1fkrAFCv32xtX1ralzYKAw522NoN0kzGn?usp=sharing
+
+```
+Data Set is from Hugging Face 
+```
+
+https://huggingface.co/datasets/PurpleAILAB/chatML_SQL_injection_dataset
+
+```
+This SLM GitHub Repo
+```
+
+https://github.com/sumeet1212khatri/SQL-Injection-GPT
+
+```
 
 Design principles:
 
