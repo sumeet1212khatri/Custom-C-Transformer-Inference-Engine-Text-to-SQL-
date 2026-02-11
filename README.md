@@ -20,7 +20,13 @@ Key Engineering Features:
 * Full Stack Integration: A `FastAPI` wrapper bridges the high-performance C++ backend with a modern HTML frontend.
 
 ---
+### SLM model train on Google Colab
+```
+https://colab.research.google.com/drive/1kYhKr4_Ljd8d0PoOGjy6t-goTnkBJF1n?usp=sharing
 
+```
+
+---
 ## 🏗️ Architecture
 
 The system follows a strict separation of concerns: **Python for Transport, C++ for Compute.**
