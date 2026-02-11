@@ -51,11 +51,11 @@ FastAPI (transport only)
           ↓
 C++ Inference Engine
 
-   * mmap(model.bin)           
+   - mmap(model.bin)           
                          
-   * Transformer forward pass  
+   - Transformer forward pass  
                           
-   * Autoregressive decoding   
+   - Autoregressive decoding   
 
 ``` 
 
